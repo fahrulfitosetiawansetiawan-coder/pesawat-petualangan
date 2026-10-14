@@ -1,0 +1,1780 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Petualangan Pesawat Angka - Game Matematika Kelas 2 SD</title>
+  <meta name="description" content="Aplikasi web game edukasi matematika interaktif penjumlahan bersusun panjang dengan menyimpan untuk siswa kelas 2 SD.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✈️</text></svg>">
+</head>
+<body>
+
+  <!-- =====================================================================
+       LIVING ANIMATED BACKGROUND SYSTEM ("DUNIA PETUALANGAN PESAWAT ANGKA")
+       Latar Belakang Pemandangan Penuh & Animasi Gambar Gerak Interaktif
+       ===================================================================== -->
+  <div class="world-animated-backdrop" id="worldAnimatedBackdrop" aria-hidden="true">
+    <!-- Panorama Ilustrasi Lanskap Dasar (assets/images/beranda_bg.jpg) -->
+    <div class="bg-scenic-layer" id="bgScenicLayer"></div>
+    <div class="bg-vignette-overlay"></div>
+
+    <!-- Matahari Animasi Tersenyum & Sinar Berputar (Pojok Kanan Atas) -->
+    <div class="bg-sun-actor-wrap" id="bgSunActor" title="Matahari Ceria (Klik untuk Berkilau!)">
+      <div class="bg-sun-rays-rotator">
+        <svg class="sun-rays-svg" viewBox="0 0 200 200">
+          <g stroke="#fef08a" stroke-width="10" stroke-linecap="round" opacity="0.95">
+            <line x1="100" y1="12" x2="100" y2="38"/>
+            <line x1="100" y1="162" x2="100" y2="188"/>
+            <line x1="12" y1="100" x2="38" y2="100"/>
+            <line x1="162" y1="100" x2="188" y2="100"/>
+            <line x1="38" y1="38" x2="56" y2="56"/>
+            <line x1="144" y1="144" x2="162" y2="162"/>
+            <line x1="38" y1="162" x2="56" y2="144"/>
+            <line x1="144" y1="56" x2="162" y2="38"/>
+          </g>
+        </svg>
+      </div>
+      <div class="bg-sun-glow-core">
+        <div class="sun-face-mini">
+          <span class="sun-eye left"></span>
+          <span class="sun-eye right"></span>
+          <span class="sun-smile"></span>
+          <span class="sun-blush left"></span>
+          <span class="sun-blush right"></span>
+        </div>
+      </div>
+      <div class="sun-sparkles">
+        <span class="sun-sparkle sp-1">✨</span>
+        <span class="sun-sparkle sp-2">⭐</span>
+      </div>
+    </div>
+
+    <!-- Pulau Terbang Ajaib Angka 1 2 3 (Pojok Kiri Atas) -->
+    <div class="bg-floating-island-wrap" id="bgFloatingIsland" title="Pulau Angka Terbang 1-2-3 (Klik!)">
+      <div class="island-sparkle-stream">
+        <span class="island-sparkle isp-1">✨</span>
+        <span class="island-sparkle isp-2">⭐</span>
+        <span class="island-sparkle isp-3">🌟</span>
+      </div>
+    </div>
+
+    <!-- Sistem Awan Bergerak Multilapis (Parallax Cloud System) -->
+    <div class="bg-cloud-drift-system">
+      <div class="drift-cloud cloud-deep cloud-deep-1"></div>
+      <div class="drift-cloud cloud-deep cloud-deep-2"></div>
+      <div class="drift-cloud cloud-mid cloud-mid-1"></div>
+      <div class="drift-cloud cloud-mid cloud-mid-2"></div>
+      <div class="drift-cloud cloud-mid cloud-mid-3"></div>
+      <div class="drift-cloud cloud-fore cloud-fore-1"></div>
+      <div class="drift-cloud cloud-fore cloud-fore-2"></div>
+    </div>
+
+
+
+    <!-- Balon Udara Kartun 3D HD Melayang di Horizon -->
+    <div class="bg-hot-air-balloon" id="bgHotAirBalloon" title="Balon Udara Ceria HD (Klik Aku!)">
+      <div class="balloon-hd-wrap">
+        <img src="assets/images/balloon_hd.png" alt="Balon Udara HD" class="balloon-hd-img">
+      </div>
+    </div>
+
+    <!-- Kawanan Burung Kartun Melintas Horizon -->
+    <div class="bg-birds-flock">
+      <span class="cartoon-bird bird-1">🕊️</span>
+      <span class="cartoon-bird bird-2">🕊️</span>
+      <span class="cartoon-bird bird-3">🕊️</span>
+    </div>
+
+    <!-- Kilau Ombak Air Laut (Water Shimmer) -->
+    <div class="bg-ocean-shimmer-area">
+      <div class="water-sparkle wsp-1"></div>
+      <div class="water-sparkle wsp-2"></div>
+      <div class="water-sparkle wsp-3"></div>
+      <div class="water-sparkle wsp-4"></div>
+    </div>
+
+    <!-- Lampu Landasan Pacu Bandara Berkelap-Kelip (Runway Strobes) -->
+    <div class="bg-runway-lights-system" title="Lampu Pemandu Landasan Pacu Bandara">
+      <span class="runway-light-strobe rls-1"></span>
+      <span class="runway-light-strobe rls-2"></span>
+      <span class="runway-light-strobe rls-3"></span>
+      <span class="runway-light-strobe rls-4"></span>
+      <span class="runway-light-strobe rls-5"></span>
+      <span class="runway-light-strobe rls-6"></span>
+    </div>
+
+    <!-- Windsock Bandara Bergoyang Mengikuti Angin -->
+    <div class="bg-airport-windsock" title="Penunjuk Arah Angin Bandara">
+      <span class="windsock-emoji">🎏</span>
+    </div>
+  </div>
+
+
+  <!-- Global Header Bar -->
+  <header class="app-header">
+    <div class="header-brand-capsule" data-nav="screen-home" title="Kembali ke Beranda">
+      <div class="capsule-plane-icon"><img src="assets/images/plane_hero_3d.png" alt="Pesawat" class="header-plane-3d-thumb"></div>
+      <div class="capsule-text-group">
+        <span class="capsule-main-title">PETUALANGAN PESAWAT ANGKA</span>
+        <span class="capsule-sub-title">MISI PENJUMLAHAN BERSUSUN</span>
+      </div>
+    </div>
+
+    <div class="header-right-group">
+      <div class="header-stat-pill pill-white" title="Bintang Terkumpul">
+        <span class="pill-icon-star">⭐</span>
+        <span id="headerStars">0</span>
+      </div>
+      <div class="header-stat-pill pill-white" title="Skor Pemain">
+        <span class="pill-icon-trophy">🏆</span>
+        <span id="headerScore">400</span>
+      </div>
+      <button class="header-square-btn" id="headerSoundBtn" title="Nyalakan/Matikan Suara">🔊</button>
+      <button class="header-square-btn" id="headerSettingsBtn" title="Pengaturan Suara & Aplikasi">⚙️</button>
+    </div>
+  </header>
+
+  <!-- Main Viewport Container -->
+  <main class="app-viewport">
+
+    <!-- =====================================================================
+         1. SCREEN: HOME (BERANDA)
+         ===================================================================== -->
+    <section class="screen active" id="screen-home">
+      <!-- Judul Utama di Tengah Atas Halaman (Hanya Tulisan & Pesawat Transparan Tanpa Background) -->
+      <div class="home-hero-header-center">
+        <div class="hero-title-artwork-wrap" id="heroTitleArtworkWrap" title="Petualangan Pesawat Angka">
+          <span class="title-sparkle sparkle-tl" aria-hidden="true">✨</span>
+          <span class="title-sparkle sparkle-tr" aria-hidden="true">⭐</span>
+          <span class="title-sparkle sparkle-br" aria-hidden="true">✨</span>
+          <img src="assets/images/font_judul_transparent.png" alt="Petualangan Pesawat Angka - Belajar Menjumlah, Menyimpan, dan Terbang Menuju Kemenangan!" class="hero-title-artwork-img" id="heroTitleArtwork">
+        </div>
+      </div>
+
+      <!-- Grid Konten Beranda: Sisi Kiri (Pilot & Bubble) dan Sisi Kanan (Kartu Menu) -->
+      <div class="home-main-stage">
+        <!-- Kolom Kiri: Pilot Pesawat Berkeliling & Balon Kata Interaktif -->
+        <div class="stage-left-pilot">
+          <div class="pilot-plane-patrol-area" id="pilot-patrol-container">
+            <div class="pilot-plane-wrapper" id="hero-pilot-actor" title="Klik Pilot untuk mendengarkannya berbicara!">
+              <!-- Efek Asap Jejak Terbang Berkeliling -->
+              <div class="pilot-jet-trails">
+                <span class="jet-puff puff-1">☁️</span>
+                <span class="jet-puff puff-2">💨</span>
+                <span class="jet-puff puff-3">✨</span>
+              </div>
+
+              <!-- Ilustrasi Pesawat & Pilot Cilik Utama -->
+              <img src="assets/images/pilot_thumbs.png" alt="Pilot Cilik Terbang Berkeliling" class="hero-pilot-plane" id="hero-pilot-img">
+
+              <!-- Badge Interaktif Klik Pilot -->
+              <div class="pilot-click-hint">
+                <span class="hint-pulse-dot"></span>
+                <span class="hint-text">Klik Aku! 🎙️</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Balon Kata Pilot Berbicara -->
+          <div class="pilot-speech-bubble-cloud" id="pilot-speech-bubble">
+            <div class="bubble-arrow-left"></div>
+            <div class="bubble-header-row">
+              <h3 class="bubble-greeting">Halo, Pilot Cilik!</h3>
+              <!-- Animasi Visual Gelombang Suara Berbicara -->
+              <div class="talking-sound-waves" id="talking-sound-waves" title="Gelombang Suara Pilot">
+                <span class="wave-bar wb-1"></span>
+                <span class="wave-bar wb-2"></span>
+                <span class="wave-bar wb-3"></span>
+                <span class="wave-bar wb-4"></span>
+              </div>
+            </div>
+            <p class="bubble-message" id="pilot-bubble-text">
+              Hari ini kita akan terbang menjelajahi dunia angka. Yuk, bantu pesawat menyelesaikan misi penjumlahan dengan menyimpan. Kumpulkan bintang sebanyak-banyaknya!
+            </p>
+            <div class="bubble-action-row">
+              <button class="btn-bubble-listen" id="btn-pilot-talk-play" title="Dengarkan Pilot Cilik membaca pesan ini">
+                <span class="btn-listen-icon">🔊</span>
+                <span class="btn-listen-label">Dengarkan Suara Pilot</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Kolom Kanan: Kartu Menu Utama -->
+        <div class="stage-right-menu">
+          <div class="glossy-menu-card">
+            <!-- Tombol Utama: Mulai Petualangan -->
+            <button class="btn-hero-mulai" data-nav="screen-map">
+              <span class="hero-play-icon-circle">▶</span>
+              <span class="hero-mulai-text">MULAI PETUALANGAN</span>
+              <span class="hero-plane-badge">🛩️</span>
+            </button>
+
+            <!-- 2x2 Menu Grid -->
+            <div class="menu-grid-buttons">
+              <!-- Belajar Materi (Biru) -->
+              <button class="menu-grid-btn btn-grid-blue" data-nav="screen-material">
+                <span class="btn-grid-icon">📖</span>
+                <span class="btn-grid-text">BELAJAR<br>MATERI</span>
+              </button>
+
+              <!-- Game Pesawat (Merah) -->
+              <button class="menu-grid-btn btn-grid-red" data-nav="screen-game">
+                <span class="btn-grid-icon">🎮</span>
+                <span class="btn-grid-text">GAME<br>PESAWAT</span>
+              </button>
+
+              <!-- Tonton Video (Ungu) -->
+              <button class="menu-grid-btn btn-grid-purple" data-nav="screen-video">
+                <span class="btn-grid-icon">🎬</span>
+                <span class="btn-grid-text">TONTON<br>VIDEO</span>
+              </button>
+
+              <!-- Petunjuk Bermain (Cyan) -->
+              <button class="menu-grid-btn btn-grid-cyan" data-nav="screen-guide">
+                <span class="btn-grid-icon">🗺️</span>
+                <span class="btn-grid-text">PETUNJUK<br>BERMAIN</span>
+              </button>
+            </div>
+
+            <!-- Tombol Penuh: Latihan Soal (Hijau) -->
+            <button class="btn-full-latihan" data-nav="screen-practice">
+              <span class="btn-grid-icon">📋</span>
+              <span class="btn-grid-text">LATIHAN SOAL</span>
+            </button>
+
+            <!-- Jejak Jalur Penerbangan & Siluet Pesawat -->
+            <div class="flight-dotted-trail-wrap">
+              <svg class="dotted-svg" viewBox="0 0 260 25" fill="none">
+                <path d="M 10 18 Q 80 4 160 12 T 240 8" stroke="#38bdf8" stroke-width="2.5" stroke-dasharray="5 5"/>
+              </svg>
+              <span class="trail-plane-icon">✈️</span>
+            </div>
+          </div>
+
+          <!-- Papan Kayu Sudut: Ayo Jadi Juara! -->
+          <div class="signpost-corner-wrap">
+            <div class="signpost-corner-wood">
+              <span>Ayo<br>Jadi ⭐<br>Juara!</span>
+            </div>
+            <div class="signpost-corner-post"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         2. SCREEN: PETA MISI (PETA PERJALANAN BELAJAR)
+         ===================================================================== -->
+    <section class="screen" id="screen-map">
+      <div class="peta-misi-outer-wrap">
+        <div class="peta-misi-board-stage" id="petaMisiBoardStage">
+          <!-- Ilustrasi Peta Misi Belajar Sesuai Gambar di Folder (Versi Bersih Tanpa Badge Statis) -->
+          <img src="assets/images/peta_misi.png?v=clean" alt="Peta Misi Belajar" class="peta-misi-canvas-img" id="petaMisiImage">
+
+          <!-- Hotspot Tombol Kembali ke Beranda (Pojok Kanan Atas) -->
+          <button class="map-hotspot-back-btn" data-nav="screen-home" title="Kembali ke Beranda Utama" aria-label="Kembali ke Beranda">
+            <span class="hotspot-click-effect"></span>
+          </button>
+
+          <!-- Teks Kemajuan Dinamis pada Pita Papan Kayu -->
+          <div class="map-ribbon-progress-text" id="mapRibbonProgress">
+            2 dari 6 misi selesai
+          </div>
+
+          <!-- Hotspot Interaktif Pesawat Maskot Melayang di Langit -->
+          <div class="map-hotspot-plane" id="mapMascotPlaneHotspot" title="Pesawat Pilot Cilik! Klik untuk mendengarkan semangat!">
+            <span class="plane-hover-glow"></span>
+          </div>
+
+          <!-- 6 Hotspot Interaktif Stasiun Pulau Misi (1 s.d. 6) -->
+          <!-- 1. Berkas Kasus -->
+          <div class="map-island-hotspot hotspot-node-1" data-mission-idx="1" data-nav="screen-material" data-tab="topic-placevalue" title="Misi 1: Berkas Kasus (Mengenal Puluhan & Satuan) - Klik untuk belajar!">
+            <div class="island-glow-ring"></div>
+            <div class="island-status-badge"></div>
+            <div class="island-click-prompt">Buka Misi 1 ➔</div>
+          </div>
+
+          <!-- 2. Ruang Sortir Bukti -->
+          <div class="map-island-hotspot hotspot-node-2" data-mission-idx="2" data-nav="screen-material" data-tab="topic-mission1" title="Misi 2: Ruang Sortir Bukti (Benda Konkret & Gambar) - Klik untuk belajar!">
+            <div class="island-glow-ring"></div>
+            <div class="island-status-badge"></div>
+            <div class="island-click-prompt">Buka Misi 2 ➔</div>
+          </div>
+
+          <!-- 3. Ruang Interogasi -->
+          <div class="map-island-hotspot hotspot-node-3" data-mission-idx="3" data-nav="screen-material" data-tab="topic-mission2" title="Misi 3: Ruang Interogasi (Langkah Penjumlahan Bersusun) - Klik untuk belajar!">
+            <div class="island-glow-ring"></div>
+            <div class="island-status-badge"></div>
+            <div class="island-click-prompt">Buka Misi 3 ➔</div>
+          </div>
+
+          <!-- 4. Laboratorium Solusi -->
+          <div class="map-island-hotspot hotspot-node-4" data-mission-idx="4" data-nav="screen-practice" title="Misi 4: Laboratorium Solusi (Latihan Mandiri & Input Angka) - Klik untuk berlatih!">
+            <div class="island-glow-ring"></div>
+            <div class="island-status-badge"></div>
+            <div class="island-click-prompt">Buka Misi 4 ➔</div>
+          </div>
+
+          <!-- 5. Misi Udara Pesawat -->
+          <div class="map-island-hotspot hotspot-node-5" data-mission-idx="5" data-nav="screen-game" title="Misi 5: Misi Udara Pesawat (Tembak Gerbang Jawaban Benar) - Klik untuk bermain!">
+            <div class="island-glow-ring"></div>
+            <div class="island-status-badge"></div>
+            <div class="island-click-prompt">Buka Game ➔</div>
+          </div>
+
+          <!-- 6. Halaman Penghargaan -->
+          <div class="map-island-hotspot hotspot-node-6" data-mission-idx="6" data-nav="screen-results" title="Misi 6: Halaman Penghargaan (Hasil Belajar & Lencana) - Klik untuk melihat rapot & lencana!">
+            <div class="island-glow-ring"></div>
+            <div class="island-status-badge"></div>
+            <div class="island-click-prompt">Lihat Hasil ➔</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         3. SCREEN: TUJUAN PEMBELAJARAN
+         ===================================================================== -->
+    <section class="screen" id="screen-goals">
+      <div class="screen-top-bar">
+        <div class="screen-title-group">
+          <div class="screen-title-icon">🎯</div>
+          <div>
+            <h2>Tujuan Pembelajaran</h2>
+            <p>Target capaian pembelajaran matematika untuk siswa kelas 2 SD.</p>
+          </div>
+        </div>
+        <button class="btn btn-back-home" data-nav="screen-home" title="Kembali ke Beranda Utama"><span class="back-arrow-icon">⬅</span> <span class="back-btn-text">Kembali ke Beranda</span></button>
+      </div>
+
+      <div class="goals-grid">
+        <!-- Tujuan 1: Multistruktural -->
+        <div class="goal-card">
+          <div class="goal-card-header">
+            <div class="goal-badge badge-multi">1</div>
+            <div>
+              <h3>Multistruktural</h3>
+              <span>Tingkat Pengenalan Konsep</span>
+            </div>
+          </div>
+          <div class="goal-body">
+            Peserta didik mampu mengidentifikasi nilai tempat <strong>puluhan dan satuan</strong> serta konsep <strong>menyimpan</strong> pada penjumlahan dua bilangan dengan tepat.
+          </div>
+          <div class="goal-footer">
+            <div class="goal-indicator">
+              <span>✈️ Fokus:</span> Mengenal batang puluhan & kubus satuan.
+            </div>
+          </div>
+        </div>
+
+        <!-- Tujuan 2: Relasional -->
+        <div class="goal-card">
+          <div class="goal-card-header">
+            <div class="goal-badge badge-rel">2</div>
+            <div>
+              <h3>Relasional</h3>
+              <span>Tingkat Hubungan & Prosedur</span>
+            </div>
+          </div>
+          <div class="goal-body">
+            Peserta didik mampu menjelaskan dan melakukan <strong>penjumlahan dengan menyimpan</strong> menggunakan <strong>benda konkret, gambar, dan cara bersusun panjang</strong> secara tepat.
+          </div>
+          <div class="goal-footer">
+            <div class="goal-indicator">
+              <span>✈️ Fokus:</span> Menukar 10 satuan menjadi 1 puluhan simpanan.
+            </div>
+          </div>
+        </div>
+
+        <!-- Tujuan 3: Abstrak Diperluas -->
+        <div class="goal-card">
+          <div class="goal-card-header">
+            <div class="goal-badge badge-ext">3</div>
+            <div>
+              <h3>Abstrak Diperluas</h3>
+              <span>Tingkat Aplikasi Kontekstual</span>
+            </div>
+          </div>
+          <div class="goal-body">
+            Peserta didik mampu menghubungkan konsep nilai tempat dengan proses menyimpan untuk <strong>menyelesaikan masalah penjumlahan dalam kehidupan sehari-hari</strong> (soal cerita).
+          </div>
+          <div class="goal-footer">
+            <div class="goal-indicator">
+              <span>✈️ Fokus:</span> Menemukan solusi masalah nyata di sekitar kita.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:24px;text-align:center;">
+        <button class="btn btn-primary" data-nav="screen-material">Ayo Mulai Belajar Materinya! ➔</button>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         4. SCREEN: MATERI BELAJAR INTERAKTIF
+         ===================================================================== -->
+    <section class="screen" id="screen-material">
+      <div class="screen-top-bar">
+        <div class="screen-title-group">
+          <div class="screen-title-icon">📚</div>
+          <div>
+            <h2>Materi Belajar Interaktif</h2>
+            <p>Eksplorasi puluhan, satuan, dan cara bersusun panjang secara menyenangkan!</p>
+          </div>
+        </div>
+        <button class="btn btn-back-home" data-nav="screen-home" title="Kembali ke Beranda Utama"><span class="back-arrow-icon">⬅</span> <span class="back-btn-text">Kembali ke Beranda</span></button>
+      </div>
+
+      <!-- Navigation Bar Sub Topik (Pos 1 s.d. Pos 3 & Lab) -->
+      <div class="topic-tabs-bar">
+        <button class="topic-tab-btn active" data-target="topic-placevalue">
+          <span>🌟</span> Pos 1: Berkas Kasus (Puluhan & Satuan)
+        </button>
+        <button class="topic-tab-btn" data-target="topic-mission1">
+          <span>🛩️</span> Pos 2: Ruang Sortir Bukti (Gabungkan Satuan)
+        </button>
+        <button class="topic-tab-btn" data-target="topic-mission2">
+          <span>✨</span> Pos 3: Ruang Interogasi (Susun & Hitung)
+        </button>
+        <button class="topic-tab-btn" data-target="topic-explore">
+          <span>🧪</span> Laboratorium Angka Mandiri
+        </button>
+      </div>
+
+      <!-- =====================================================================
+           SUB TOPIK 1: PETUALANGAN MENGENAL PULUHAN DAN SATUAN
+           ===================================================================== -->
+      <div class="topic-section active" id="topic-placevalue">
+        <div class="infographic-wrapper">
+          <!-- Header Banner -->
+          <div class="infographic-header-banner">
+            <div>
+              <div class="wood-banner-title">
+                <span class="wood-banner-text">Petualangan Mengenal Puluhan dan Satuan</span>
+              </div>
+              <div class="banner-subtext">Bilangan dua angka terdiri dari puluhan dan satuan.</div>
+            </div>
+            <div class="banner-mascot-speech" title="Pilot Cilik Menyapa">
+              <img src="assets/images/pilot_thumbs.png" alt="Pilot" class="banner-mascot-img">
+              <span class="banner-bubble-text">"Ayo, kita jelajahi dunia angka!" ✈️</span>
+            </div>
+          </div>
+
+          <!-- Grid Konten: Kiri (Contoh 1 & 2) dan Kanan (Ingat & Ayo Berpikir) -->
+          <div class="info-grid-2col">
+            <!-- Kolom Kiri: Contoh 1 & Contoh 2 -->
+            <div class="contoh-cards-row">
+              <!-- Contoh 1: Bilangan 28 -->
+              <div class="contoh-card-box">
+                <div class="contoh-header-tab">Contoh 1: Bilangan 28</div>
+                <div class="contoh-body-inner">
+                  <div class="contoh-formula-display">
+                    <div>28 = 20 + 8</div>
+                    <div style="font-size:1rem;color:#0284c7;font-weight:700;margin-top:4px;">28 = 2 puluhan + 8 satuan</div>
+                  </div>
+                  <div style="text-align:center;">
+                    <div class="number-badge-yellow">28</div>
+                  </div>
+                  <div class="columns-placevalue-row">
+                    <!-- Puluhan -->
+                    <div class="col-placevalue">
+                      <span class="col-tag-pill tag-puluhan">PULUHAN</span>
+                      <div class="col-blocks-display">
+                        <div class="ten-rod-graphic"><div class="ten-rod-segment"></div><div class="ten-rod-segment"></div></div>
+                        <div class="ten-rod-graphic"><div class="ten-rod-segment"></div><div class="ten-rod-segment"></div></div>
+                      </div>
+                      <span class="col-label-count">2 batang puluhan<br><strong>(20)</strong></span>
+                    </div>
+                    <!-- Satuan -->
+                    <div class="col-placevalue">
+                      <span class="col-tag-pill tag-satuan">SATUAN</span>
+                      <div class="col-blocks-display">
+                        <div class="unit-grid-2x4">
+                          <span class="unit-cube-yellow"></span><span class="unit-cube-yellow"></span><span class="unit-cube-yellow"></span><span class="unit-cube-yellow"></span>
+                          <span class="unit-cube-yellow"></span><span class="unit-cube-yellow"></span><span class="unit-cube-yellow"></span><span class="unit-cube-yellow"></span>
+                        </div>
+                      </div>
+                      <span class="col-label-count">8 kubus satuan<br><strong>(8)</strong></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Contoh 2: Bilangan 25 -->
+              <div class="contoh-card-box box-green">
+                <div class="contoh-header-tab">Contoh 2: Bilangan 25</div>
+                <div class="contoh-body-inner">
+                  <div class="contoh-formula-display">
+                    <div>25 = 20 + 5</div>
+                    <div style="font-size:1rem;color:#16a34a;font-weight:700;margin-top:4px;">25 = 2 puluhan + 5 satuan</div>
+                  </div>
+                  <div style="text-align:center;">
+                    <div class="number-badge-yellow">25</div>
+                  </div>
+                  <div class="columns-placevalue-row">
+                    <!-- Puluhan -->
+                    <div class="col-placevalue">
+                      <span class="col-tag-pill tag-puluhan">PULUHAN</span>
+                      <div class="col-blocks-display">
+                        <div class="ten-rod-graphic"><div class="ten-rod-segment"></div><div class="ten-rod-segment"></div></div>
+                        <div class="ten-rod-graphic"><div class="ten-rod-segment"></div><div class="ten-rod-segment"></div></div>
+                      </div>
+                      <span class="col-label-count">2 batang puluhan<br><strong>(20)</strong></span>
+                    </div>
+                    <!-- Satuan -->
+                    <div class="col-placevalue">
+                      <span class="col-tag-pill tag-satuan">SATUAN</span>
+                      <div class="col-blocks-display">
+                        <div class="unit-row-5">
+                          <span class="unit-cube-yellow"></span><span class="unit-cube-yellow"></span><span class="unit-cube-yellow"></span><span class="unit-cube-yellow"></span><span class="unit-cube-yellow"></span>
+                        </div>
+                      </div>
+                      <span class="col-label-count">5 kubus satuan<br><strong>(5)</strong></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Kolom Kanan: Kotak Ingat & Ayo Berpikir -->
+            <div>
+              <!-- Kotak Ingat! -->
+              <div class="card-ingat-panel">
+                <div class="panel-header-ingat">
+                  <span style="font-size:1.5rem;">💡</span> <span>Ingat!</span>
+                </div>
+                <div style="display:flex;align-items:center;gap:12px;margin:8px 0;">
+                  <div class="ten-rod-graphic" style="height:70px;"><div class="ten-rod-segment"></div></div>
+                  <p style="font-weight:700;color:#831843;font-size:0.95rem;line-height:1.4;">
+                    <strong>Puluhan</strong> adalah kelompok yang berisi <strong>10 satuan</strong>.
+                  </p>
+                </div>
+                <div style="border-top:2px dashed #fbcfe8;padding-top:10px;margin-top:8px;">
+                  <div style="display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:8px;">
+                    <div style="display:flex;gap:3px;flex-wrap:wrap;max-width:90px;">
+                      <span class="unit-cube-yellow"></span><span class="unit-cube-yellow"></span><span class="unit-cube-yellow"></span><span class="unit-cube-yellow"></span><span class="unit-cube-yellow"></span>
+                      <span class="unit-cube-yellow"></span><span class="unit-cube-yellow"></span><span class="unit-cube-yellow"></span><span class="unit-cube-yellow"></span><span class="unit-cube-yellow"></span>
+                    </div>
+                    <span style="font-size:1.4rem;font-weight:900;color:#db2777;">➔</span>
+                    <div class="ten-rod-graphic" style="height:65px;"><div class="ten-rod-segment"></div></div>
+                  </div>
+                  <p style="font-size:0.92rem;font-weight:700;color:#9d174d;line-height:1.4;">
+                    Jika kita mengumpulkan <strong>10 satuan</strong>, kita dapat menukarnya menjadi <strong>1 puluhan</strong>!
+                  </p>
+                  <button class="btn btn-accent" id="btnSwapSample" style="width:100%;margin-top:10px;font-size:0.9rem;padding:7px 12px;">
+                    🔄 Coba Tukar 10 Satuan ➔ 1 Puluhan!
+                  </button>
+                  <div id="swapSampleFeedback" style="margin-top:6px;font-weight:800;color:#15803d;font-size:0.9rem;text-align:center;"></div>
+                </div>
+              </div>
+
+              <!-- Kotak Ayo Berpikir! -->
+              <div class="card-pikir-panel">
+                <div class="panel-header-pikir">
+                  <span style="font-size:1.5rem;">❓</span> <span>Ayo Berpikir!</span>
+                </div>
+                <p style="font-weight:700;color:#115e59;font-size:0.95rem;line-height:1.4;margin-bottom:12px;">
+                  Jika <strong>8 satuan</strong> ditambah <strong>6 satuan</strong>, berapa jumlahnya?
+                </p>
+                <div style="display:flex;align-items:center;gap:10px;">
+                  <input type="number" id="inputPikirSatuan" class="interactive-ws-input" placeholder="?" style="width:80px;height:48px;font-size:1.5rem;">
+                  <button class="btn btn-primary" id="btnCheckPikir" style="font-size:0.95rem;padding:9px 18px;">Periksa ⭐</button>
+                </div>
+                <div id="pikirFeedback" style="margin-top:8px;font-weight:800;font-size:0.95rem;"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Banner Navigasi Selesai Pos 1 & Lanjut ke Pos 2 -->
+          <div class="mission-next-flow-card" id="flowCardPos1">
+            <div class="mission-next-info">
+              <div class="mission-step-tag">POS 1: BERKAS KASUS</div>
+              <h4 class="mission-next-heading" id="headingPos1">Sudah Paham Puluhan & Satuan? Ayo Selesaikan Tantangan!</h4>
+              <p class="mission-next-subtext" id="subtextPos1">Jawab pertanyaan di kotak <strong>Ayo Berpikir! (8 + 6 = ?)</strong> di atas untuk membuka <strong>Pos 2: Ruang Sortir Bukti</strong>!</p>
+            </div>
+            <div class="mission-next-buttons">
+              <button class="btn btn-outline" data-nav="screen-map">
+                🗺️ Peta Misi
+              </button>
+              <button class="btn btn-hero-mulai btn-flow-next is-locked" id="btnNextMission1" data-complete-mission="1" data-next-screen="screen-material" data-next-tab="topic-mission1">
+                <span class="btn-flow-icon">🔒</span>
+                <span class="btn-flow-text">Selesaikan Tantangan ➔ Lanjut Pos 2</span>
+                <span class="btn-flow-arrow">❯</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- =====================================================================
+           SUB TOPIK 2: MISI 1 — GABUNGKAN SATUAN! (28 + 6)
+           ===================================================================== -->
+      <div class="topic-section" id="topic-mission1">
+        <div class="infographic-wrapper">
+          <!-- Header Banner -->
+          <div class="infographic-header-banner">
+            <div>
+              <div class="wood-banner-title">
+                <span class="wood-banner-text">Misi 1: Gabungkan Satuan!</span>
+              </div>
+              <div class="banner-subtext">Ayo kita hitung dan lihat apa yang terjadi!</div>
+            </div>
+            <div class="problem-cloud-pill">
+              <span class="problem-cloud-math">28 + 6</span>
+            </div>
+          </div>
+
+          <!-- 3 Langkah Sesuai Infografis Gambar 1 -->
+          <div class="steps-cards-grid-3">
+            <!-- Langkah 1: Uraikan Bilangan -->
+            <div class="step-card-col col-blue">
+              <div class="step-col-head">
+                <span class="step-num-badge">1</span>
+                <span>Uraikan Bilangan</span>
+              </div>
+              <div class="step-col-body">
+                <div class="step-math-pill">
+                  <div>28 = 20 + 8</div>
+                  <div style="margin-top:4px;">6 = 0 + 6</div>
+                </div>
+                <!-- Visual Blok -->
+                <div style="display:flex;justify-content:space-around;align-items:flex-end;margin-top:10px;">
+                  <!-- 28 -->
+                  <div style="text-align:center;">
+                    <span style="font-weight:900;color:#0284c7;font-size:1.1rem;">28</span>
+                    <div style="display:flex;gap:6px;justify-content:center;margin:6px 0;">
+                      <div class="ten-rod-graphic" style="height:70px;"><div class="ten-rod-segment"></div></div>
+                      <div class="ten-rod-graphic" style="height:70px;"><div class="ten-rod-segment"></div></div>
+                      <div style="display:grid;grid-template-columns:repeat(2,16px);gap:3px;align-content:end;">
+                        <span class="unit-cube-blue"></span><span class="unit-cube-blue"></span>
+                        <span class="unit-cube-blue"></span><span class="unit-cube-blue"></span>
+                        <span class="unit-cube-blue"></span><span class="unit-cube-blue"></span>
+                        <span class="unit-cube-blue"></span><span class="unit-cube-blue"></span>
+                      </div>
+                    </div>
+                    <span style="font-size:0.8rem;color:#475569;font-weight:700;">2 puluhan & 8 satuan</span>
+                  </div>
+                  <!-- 6 -->
+                  <div style="text-align:center;">
+                    <span style="font-weight:900;color:#dc2626;font-size:1.1rem;">6</span>
+                    <div style="margin:6px 0;min-height:70px;display:flex;align-items:flex-end;justify-content:center;">
+                      <div style="display:grid;grid-template-columns:repeat(2,16px);gap:3px;">
+                        <span class="unit-cube-red"></span><span class="unit-cube-red"></span>
+                        <span class="unit-cube-red"></span><span class="unit-cube-red"></span>
+                        <span class="unit-cube-red"></span><span class="unit-cube-red"></span>
+                      </div>
+                    </div>
+                    <span style="font-size:0.8rem;color:#475569;font-weight:700;">0 puluhan & 6 satuan</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Langkah 2: Jumlahkan Satuan -->
+            <div class="step-card-col col-green">
+              <div class="step-col-head">
+                <span class="step-num-badge">2</span>
+                <span>Jumlahkan Satuan</span>
+              </div>
+              <div class="step-col-body">
+                <div class="step-math-pill" style="color:#15803d;">
+                  8 + 6 = 14
+                </div>
+                <!-- Visual Penggabungan Satuan -->
+                <div style="text-align:center;margin:10px 0;">
+                  <div style="display:flex;align-items:center;justify-content:center;gap:8px;">
+                    <div style="display:grid;grid-template-columns:repeat(4,14px);gap:2px;">
+                      <span class="unit-cube-blue"></span><span class="unit-cube-blue"></span><span class="unit-cube-blue"></span><span class="unit-cube-blue"></span>
+                      <span class="unit-cube-blue"></span><span class="unit-cube-blue"></span><span class="unit-cube-blue"></span><span class="unit-cube-blue"></span>
+                    </div>
+                    <span style="font-weight:900;font-size:1.3rem;color:#16a34a;">+</span>
+                    <div style="display:grid;grid-template-columns:repeat(3,14px);gap:2px;">
+                      <span class="unit-cube-red"></span><span class="unit-cube-red"></span><span class="unit-cube-red"></span>
+                      <span class="unit-cube-red"></span><span class="unit-cube-red"></span><span class="unit-cube-red"></span>
+                    </div>
+                  </div>
+                  <div style="font-size:1.4rem;color:#16a34a;margin:6px 0;">⬇️</div>
+                  <div class="dotted-units-box">
+                    <div style="display:grid;grid-template-columns:repeat(7,14px);gap:2px;justify-content:center;">
+                      <span class="unit-cube-blue"></span><span class="unit-cube-blue"></span><span class="unit-cube-blue"></span><span class="unit-cube-blue"></span>
+                      <span class="unit-cube-blue"></span><span class="unit-cube-blue"></span><span class="unit-cube-blue"></span><span class="unit-cube-blue"></span>
+                      <span class="unit-cube-red"></span><span class="unit-cube-red"></span><span class="unit-cube-red"></span>
+                      <span class="unit-cube-red"></span><span class="unit-cube-red"></span><span class="unit-cube-red"></span>
+                    </div>
+                    <span style="font-weight:900;color:#e11d48;font-size:0.95rem;display:block;margin-top:4px;">14 satuan</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Langkah 3: Pisahkan Hasil Satuan -->
+            <div class="step-card-col col-orange">
+              <div class="step-col-head">
+                <span class="step-num-badge">3</span>
+                <span>Pisahkan Hasil Satuan</span>
+              </div>
+              <div class="step-col-body">
+                <div class="step-math-pill" style="color:#c2410c;">
+                  14 = 10 + 4
+                </div>
+                <!-- Visual Transformasi 10 Satuan -> 1 Puluhan -->
+                <div style="display:flex;align-items:center;justify-content:center;gap:10px;margin-top:10px;">
+                  <div style="background:#fff7ed;border:2px dashed #fb923c;border-radius:10px;padding:6px;text-align:center;">
+                    <div style="display:grid;grid-template-columns:repeat(5,13px);gap:2px;justify-content:center;">
+                      <span class="unit-cube-red"></span><span class="unit-cube-red"></span><span class="unit-cube-red"></span><span class="unit-cube-red"></span><span class="unit-cube-red"></span>
+                      <span class="unit-cube-red"></span><span class="unit-cube-red"></span><span class="unit-cube-red"></span><span class="unit-cube-red"></span><span class="unit-cube-red"></span>
+                    </div>
+                    <span style="font-size:0.8rem;font-weight:800;color:#ea580c;margin-top:2px;display:block;">10 satuan</span>
+                  </div>
+                  <span style="font-size:1.4rem;font-weight:900;color:#ea580c;">➔</span>
+                  <div style="text-align:center;">
+                    <div class="ten-rod-graphic" style="height:70px;margin:0 auto;"><div class="ten-rod-segment"></div></div>
+                    <span style="font-size:0.8rem;font-weight:800;color:#0284c7;margin-top:2px;display:block;">1 puluhan</span>
+                  </div>
+                  <span style="font-size:1.2rem;font-weight:900;color:#ea580c;">+</span>
+                  <div style="text-align:center;">
+                    <div style="display:grid;grid-template-columns:repeat(2,13px);gap:2px;justify-content:center;">
+                      <span class="unit-cube-red"></span><span class="unit-cube-red"></span>
+                      <span class="unit-cube-red"></span><span class="unit-cube-red"></span>
+                    </div>
+                    <span style="font-size:0.8rem;font-weight:800;color:#ea580c;margin-top:2px;display:block;">4 satuan</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Kotak Tantangan Interaktif Pos 2: Ruang Sortir Bukti -->
+          <div class="card-pikir-panel pos2-panel" id="challengePos2Panel" style="margin-top:16px;">
+            <div class="panel-header-pikir" style="color:#c2410c;">
+              <span style="font-size:1.5rem;">🎯</span> <span>Tantangan Pos 2: Ruang Sortir Bukti</span>
+            </div>
+            <p style="font-weight:700;color:#9a3412;font-size:0.95rem;line-height:1.4;margin-bottom:12px;">
+              Bantu Pilot menyortir <strong>14 satuan (dari 8 + 6)</strong>!<br>
+              Tulis berapa puluhan dan berapa satuan yang terbentuk setelah 10 kubus ditukar:
+            </p>
+            <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;background:rgba(255,255,255,0.85);padding:14px;border-radius:14px;border:2px dashed #fb923c;">
+              <span style="font-weight:900;color:#0f172a;font-size:1.2rem;">14 =</span>
+              <input type="number" id="inputPos2Puluhan" class="interactive-ws-input" placeholder="?" min="0" max="9" style="width:70px;height:48px;font-size:1.4rem;text-align:center;">
+              <span style="font-weight:800;color:#0284c7;font-size:1rem;">puluhan (10)</span>
+              <span style="font-weight:900;color:#0f172a;font-size:1.3rem;">+</span>
+              <input type="number" id="inputPos2Satuan" class="interactive-ws-input" placeholder="?" min="0" max="9" style="width:70px;height:48px;font-size:1.4rem;text-align:center;">
+              <span style="font-weight:800;color:#ea580c;font-size:1rem;">satuan</span>
+              <button class="btn btn-primary" id="btnCheckPos2" style="font-size:0.95rem;padding:10px 20px;background:#ea580c;border-color:#c2410c;">Periksa Sortir ⭐</button>
+            </div>
+            <div id="pos2Feedback" style="margin-top:8px;font-weight:800;font-size:0.95rem;"></div>
+          </div>
+
+          <!-- Bottom Footer Row: Maskot Berbicara -->
+          <div class="mascot-bottom-speech-bar">
+            <img src="assets/images/pilot_thumbs.png" alt="Pesawat Maskot" style="width:65px;height:65px;object-fit:contain;">
+            <div style="flex:1;">
+              <div style="font-weight:800;color:#0369a1;font-size:1.1rem;margin-bottom:4px;">
+                💡 Ingat! 10 satuan dapat ditukar menjadi 1 puluhan.
+              </div>
+              <div style="font-weight:700;color:#334155;font-size:1rem;">
+                "Sekarang kita memiliki <strong>2 puluhan</strong> dan <strong>1 puluhan simpanan</strong>, serta <strong>4 satuan</strong>."
+              </div>
+            </div>
+          </div>
+
+          <!-- Banner Navigasi Selesai Pos 2 & Lanjut ke Pos 3 -->
+          <div class="mission-next-flow-card" id="flowCardPos2">
+            <div class="mission-next-info">
+              <div class="mission-step-tag">POS 2: RUANG SORTIR BUKTI</div>
+              <h4 class="mission-next-heading" id="headingPos2">Sortir 14 Satuan untuk Membuka Pos 3!</h4>
+              <p class="mission-next-subtext" id="subtextPos2">Selesaikan tantangan sortir bukti di atas untuk membuka <strong>Pos 3: Ruang Interogasi (Langkah Penjumlahan Bersusun)</strong>!</p>
+            </div>
+            <div class="mission-next-buttons">
+              <button class="btn btn-outline" data-nav="screen-map">
+                🗺️ Peta Misi
+              </button>
+              <button class="btn btn-hero-mulai btn-flow-next is-locked" id="btnNextMission2" data-complete-mission="2" data-next-screen="screen-material" data-next-tab="topic-mission2">
+                <span class="btn-flow-icon">🔒</span>
+                <span class="btn-flow-text">Selesaikan Tantangan ➔ Lanjut Pos 3</span>
+                <span class="btn-flow-arrow">❯</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- =====================================================================
+           SUB TOPIK 3: MISI 2 — SUSUN DAN HITUNG! (28 + 6)
+           ===================================================================== -->
+      <div class="topic-section" id="topic-mission2">
+        <div class="infographic-wrapper">
+          <!-- Header Banner -->
+          <div class="infographic-header-banner">
+            <div>
+              <div class="wood-banner-title">
+                <span class="wood-banner-text">Misi 2: Susun dan Hitung!</span>
+              </div>
+              <div class="banner-subtext">Ayo kita lakukan penjumlahan bersusun panjang!</div>
+            </div>
+            <div class="problem-cloud-pill">
+              <span class="problem-cloud-math">28 + 6</span>
+            </div>
+          </div>
+
+          <!-- 4 Langkah Sesuai Infografis Gambar 2 -->
+          <div class="steps-cards-grid-4">
+            <!-- 1. Uraikan Bilangan -->
+            <div class="step-card-col col-blue">
+              <div class="step-col-head">
+                <span class="step-num-badge">1</span>
+                <span>Uraikan Bilangan</span>
+              </div>
+              <div class="step-col-body">
+                <div class="step-math-pill">
+                  <div>28 = 20 + 8</div>
+                  <div style="margin-top:4px;">6 = 0 + 6</div>
+                </div>
+                <div style="display:flex;justify-content:space-around;align-items:flex-end;">
+                  <div style="text-align:center;">
+                    <div style="font-weight:800;color:#0284c7;font-size:0.95rem;">28</div>
+                    <div style="display:flex;gap:4px;justify-content:center;margin:6px 0;">
+                      <div class="ten-rod-graphic" style="height:60px;"><div class="ten-rod-segment"></div></div>
+                      <div class="ten-rod-graphic" style="height:60px;"><div class="ten-rod-segment"></div></div>
+                    </div>
+                    <div style="display:grid;grid-template-columns:repeat(4,12px);gap:2px;justify-content:center;">
+                      <span class="unit-cube-yellow"></span><span class="unit-cube-yellow"></span><span class="unit-cube-yellow"></span><span class="unit-cube-yellow"></span>
+                      <span class="unit-cube-yellow"></span><span class="unit-cube-yellow"></span><span class="unit-cube-yellow"></span><span class="unit-cube-yellow"></span>
+                    </div>
+                    <span style="font-size:0.75rem;font-weight:700;color:#64748b;margin-top:4px;display:block;">2 puluhan & 8 satuan</span>
+                  </div>
+                  <div style="text-align:center;">
+                    <div style="font-weight:800;color:#dc2626;font-size:0.95rem;">6</div>
+                    <div style="min-height:60px;display:flex;align-items:flex-end;justify-content:center;margin:6px 0;">
+                      <div style="display:grid;grid-template-columns:repeat(3,12px);gap:2px;">
+                        <span class="unit-cube-yellow"></span><span class="unit-cube-yellow"></span><span class="unit-cube-yellow"></span>
+                        <span class="unit-cube-yellow"></span><span class="unit-cube-yellow"></span><span class="unit-cube-yellow"></span>
+                      </div>
+                    </div>
+                    <span style="font-size:0.75rem;font-weight:700;color:#64748b;margin-top:4px;display:block;">0 puluhan & 6 satuan</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 2. Jumlahkan Satuan -->
+            <div class="step-card-col col-green">
+              <div class="step-col-head">
+                <span class="step-num-badge">2</span>
+                <span>Jumlahkan Satuan</span>
+              </div>
+              <div class="step-col-body">
+                <div class="step-math-pill" style="color:#15803d;">
+                  8 + 6 = 14
+                </div>
+                <div style="text-align:center;margin:6px 0;">
+                  <div style="display:flex;align-items:center;justify-content:center;gap:6px;">
+                    <div style="display:grid;grid-template-columns:repeat(4,12px);gap:2px;">
+                      <span class="unit-cube-yellow"></span><span class="unit-cube-yellow"></span><span class="unit-cube-yellow"></span><span class="unit-cube-yellow"></span>
+                      <span class="unit-cube-yellow"></span><span class="unit-cube-yellow"></span><span class="unit-cube-yellow"></span><span class="unit-cube-yellow"></span>
+                    </div>
+                    <span style="font-weight:900;color:#16a34a;">+</span>
+                    <div style="display:grid;grid-template-columns:repeat(3,12px);gap:2px;">
+                      <span class="unit-cube-yellow"></span><span class="unit-cube-yellow"></span><span class="unit-cube-yellow"></span>
+                      <span class="unit-cube-yellow"></span><span class="unit-cube-yellow"></span><span class="unit-cube-yellow"></span>
+                    </div>
+                  </div>
+                  <div style="font-size:1.2rem;color:#16a34a;margin:4px 0;">⬇️</div>
+                  <div class="dotted-units-box" style="padding:4px;">
+                    <div style="display:grid;grid-template-columns:repeat(7,11px);gap:2px;justify-content:center;">
+                      <span class="unit-cube-yellow"></span><span class="unit-cube-yellow"></span><span class="unit-cube-yellow"></span><span class="unit-cube-yellow"></span><span class="unit-cube-yellow"></span><span class="unit-cube-yellow"></span><span class="unit-cube-yellow"></span>
+                      <span class="unit-cube-yellow"></span><span class="unit-cube-yellow"></span><span class="unit-cube-yellow"></span><span class="unit-cube-yellow"></span><span class="unit-cube-yellow"></span><span class="unit-cube-yellow"></span><span class="unit-cube-yellow"></span>
+                    </div>
+                    <span style="font-weight:900;color:#e11d48;font-size:0.85rem;display:block;margin-top:2px;">14 satuan</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 3. Pisahkan Hasil Satuan -->
+            <div class="step-card-col col-orange">
+              <div class="step-col-head">
+                <span class="step-num-badge">3</span>
+                <span>Pisahkan Satuan</span>
+              </div>
+              <div class="step-col-body">
+                <div class="step-math-pill" style="color:#c2410c;">
+                  14 = 10 + 4
+                </div>
+                <div style="display:flex;align-items:center;justify-content:center;gap:6px;margin-top:8px;">
+                  <div style="background:#fff7ed;border:2px dashed #fb923c;border-radius:8px;padding:4px;text-align:center;">
+                    <div style="display:grid;grid-template-columns:repeat(5,10px);gap:2px;">
+                      <span class="unit-cube-yellow"></span><span class="unit-cube-yellow"></span><span class="unit-cube-yellow"></span><span class="unit-cube-yellow"></span><span class="unit-cube-yellow"></span>
+                      <span class="unit-cube-yellow"></span><span class="unit-cube-yellow"></span><span class="unit-cube-yellow"></span><span class="unit-cube-yellow"></span><span class="unit-cube-yellow"></span>
+                    </div>
+                    <span style="font-size:0.7rem;font-weight:800;color:#ea580c;">10 satuan</span>
+                  </div>
+                  <span style="font-weight:900;color:#ea580c;">➔</span>
+                  <div style="text-align:center;">
+                    <div class="ten-rod-graphic" style="height:55px;width:18px;margin:0 auto;"><div class="ten-rod-segment"></div></div>
+                    <span style="font-size:0.7rem;font-weight:800;color:#0284c7;">1 puluhan</span>
+                  </div>
+                  <span style="font-weight:900;color:#ea580c;">+</span>
+                  <div style="text-align:center;">
+                    <div style="display:grid;grid-template-columns:repeat(2,10px);gap:2px;">
+                      <span class="unit-cube-yellow"></span><span class="unit-cube-yellow"></span>
+                      <span class="unit-cube-yellow"></span><span class="unit-cube-yellow"></span>
+                    </div>
+                    <span style="font-size:0.7rem;font-weight:800;color:#ea580c;">4 satuan</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 4. Gabungkan Hasilnya (Bersusun Panjang) -->
+            <div class="step-card-col col-purple">
+              <div class="step-col-head">
+                <span class="step-num-badge">4</span>
+                <span>Gabungkan Hasilnya</span>
+              </div>
+              <div class="step-col-body">
+                <table class="long-addition-step-table">
+                  <tr>
+                    <td><span class="num-blue">20</span> + 8</td>
+                    <td style="font-size:0.75rem;color:#64748b;font-weight:700;">(dari 28)</td>
+                  </tr>
+                  <tr>
+                    <td>&nbsp;&nbsp;<span class="num-blue">0</span> + 6</td>
+                    <td style="font-size:0.75rem;color:#64748b;font-weight:700;">(dari 6)</td>
+                  </tr>
+                  <tr>
+                    <td colspan="2" style="border-bottom:3.5px solid #0f172a;padding:2px 0;"></td>
+                  </tr>
+                  <tr>
+                    <td colspan="2"><span class="num-blue">20</span> + <span class="num-red">14</span></td>
+                  </tr>
+                  <tr>
+                    <td colspan="2"><span class="num-blue">20</span> + <span class="num-red" style="background:#fee2e2;padding:1px 6px;border-radius:6px;">10</span> + 4</td>
+                  </tr>
+                  <tr>
+                    <td colspan="2"><span class="num-blue" style="font-size:1.45rem;">30</span> + 4</td>
+                  </tr>
+                  <tr>
+                    <td colspan="2" style="text-align:center;padding-top:6px;">
+                      <span class="num-gold">34</span>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- Kotak Tantangan Interaktif Pos 3: Ruang Interogasi -->
+          <div class="card-pikir-panel pos3-panel" id="challengePos3Panel" style="margin-top:16px;">
+            <div class="panel-header-pikir" style="color:#6d28d9;">
+              <span style="font-size:1.5rem;">🎯</span> <span>Tantangan Pos 3: Ruang Interogasi</span>
+            </div>
+            <p style="font-weight:700;color:#5b21b6;font-size:0.95rem;line-height:1.4;margin-bottom:12px;">
+              Setelah menjumlahkan satuan (14 = 10 + 4) dan menambahkan puluhan simpanan ke 20 menjadi 30:<br>
+              <strong>Berapa hasil akhir dari penjumlahan 28 + 6?</strong>
+            </p>
+            <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;background:rgba(255,255,255,0.85);padding:14px;border-radius:14px;border:2px dashed #8b5cf6;">
+              <span style="font-weight:900;color:#0f172a;font-size:1.25rem;">28 + 6 =</span>
+              <input type="number" id="inputPos3Hasil" class="interactive-ws-input" placeholder="?" min="0" max="99" style="width:85px;height:48px;font-size:1.45rem;text-align:center;">
+              <button class="btn btn-primary" id="btnCheckPos3" style="font-size:0.95rem;padding:10px 20px;background:#7c3aed;border-color:#6d28d9;">Periksa Hasil Akhir ⭐</button>
+            </div>
+            <div id="pos3Feedback" style="margin-top:8px;font-weight:800;font-size:0.95rem;"></div>
+          </div>
+
+          <!-- Bottom Card: Hasil Akhir & Ucapan Maskot -->
+          <div class="bottom-result-highlight-card">
+            <div>
+              <span style="font-family:var(--font-display);font-size:1.1rem;color:#854d0e;font-weight:800;display:block;margin-bottom:4px;">HASIL AKHIR PENJUMLAHAN:</span>
+              <div class="result-calc-label">
+                28 + 6 = <span class="result-badge-gold">34</span>
+              </div>
+            </div>
+            <!-- Blok Visual 34 -->
+            <div style="display:flex;align-items:center;gap:20px;">
+              <div style="text-align:center;">
+                <div style="display:flex;gap:6px;justify-content:center;">
+                  <div class="ten-rod-graphic" style="height:80px;"><div class="ten-rod-segment"></div></div>
+                  <div class="ten-rod-graphic" style="height:80px;"><div class="ten-rod-segment"></div></div>
+                  <div class="ten-rod-graphic" style="height:80px;"><div class="ten-rod-segment"></div></div>
+                </div>
+                <span style="font-size:0.85rem;font-weight:800;color:#0284c7;margin-top:4px;display:block;">3 puluhan (30)</span>
+              </div>
+              <span style="font-size:1.8rem;font-weight:900;color:#ca8a04;">+</span>
+              <div style="text-align:center;">
+                <div style="display:grid;grid-template-columns:repeat(2,16px);gap:4px;justify-content:center;">
+                  <span class="unit-cube-yellow"></span><span class="unit-cube-yellow"></span>
+                  <span class="unit-cube-yellow"></span><span class="unit-cube-yellow"></span>
+                </div>
+                <span style="font-size:0.85rem;font-weight:800;color:#ca8a04;margin-top:4px;display:block;">4 satuan (4)</span>
+              </div>
+            </div>
+            <!-- Tombol Navigasi Latihan Soal -->
+            <button class="btn btn-hero-mulai btn-flow-next is-locked" id="btnBottomToPractice" data-complete-mission="3" data-next-screen="screen-practice" style="width:auto;margin:0;padding:12px 24px;">
+              <span>Ayo Coba Latihan Soal! 📋</span>
+            </button>
+          </div>
+
+          <!-- Ucapan Pesawat Maskot -->
+          <div class="mascot-bottom-speech-bar">
+            <img src="assets/images/pilot_thumbs.png" alt="Pesawat Maskot" style="width:65px;height:65px;object-fit:contain;">
+            <div style="font-weight:700;color:#334155;font-size:1.05rem;">
+              "Sekarang kita memiliki <strong>2 puluhan</strong> dan <strong>1 puluhan simpanan</strong>, serta <strong>4 satuan</strong>. Hasil akhirnya adalah <strong>34</strong>! Hebat sekali!"
+            </div>
+          </div>
+
+          <!-- Banner Navigasi Selesai Pos 3 & Lanjut ke Pos 4 -->
+          <div class="mission-next-flow-card" id="flowCardPos3">
+            <div class="mission-next-info">
+              <div class="mission-step-tag">POS 3: RUANG INTEROGASI</div>
+              <h4 class="mission-next-heading" id="headingPos3">Penjumlahan Bersusun Panjang Dikuasai!</h4>
+              <p class="mission-next-subtext" id="subtextPos3">Selesaikan verifikasi hasil 28 + 6 di atas untuk membuka gerbang <strong>Pos 4: Laboratorium Solusi (Latihan Mandiri & Input Angka)</strong>!</p>
+            </div>
+            <div class="mission-next-buttons">
+              <button class="btn btn-outline" data-nav="screen-map">
+                🗺️ Peta Misi
+              </button>
+              <button class="btn btn-hero-mulai btn-flow-next is-locked" id="btnNextMission3" data-complete-mission="3" data-next-screen="screen-practice">
+                <span class="btn-flow-icon">🔒</span>
+                <span class="btn-flow-text">Selesaikan Tantangan ➔ Lanjut Pos 4</span>
+                <span class="btn-flow-arrow">❯</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- =====================================================================
+           SUB TOPIK 4: LABORATORIUM ANGKA MANDIRI
+           ===================================================================== -->
+      <div class="topic-section" id="topic-explore">
+        <div class="infographic-wrapper">
+          <div class="infographic-header-banner">
+            <div>
+              <div class="wood-banner-title">
+                <span class="wood-banner-text">Laboratorium Angka Mandiri</span>
+              </div>
+              <div class="banner-subtext">Coba pilih angka bebas untuk melihat penguraian puluhan, satuan, dan blok konkret!</div>
+            </div>
+          </div>
+
+          <!-- Input Selector -->
+          <div style="background:#f8fafc;border:3px solid #38bdf8;border-radius:20px;padding:24px;text-align:center;">
+            <h4 style="font-family:var(--font-display);color:#0369a1;font-size:1.4rem;margin-bottom:12px;">
+              🎮 Pilih Bilanganmu (0 - 99):
+            </h4>
+            <div style="display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap;">
+              <input type="number" id="explorerNumberPicker" value="28" min="0" max="99" class="interactive-ws-input" style="width:85px;height:52px;font-size:1.8rem;">
+              <button class="btn btn-primary" id="exploreNumberBtn" style="font-size:1.1rem;padding:12px 24px;">
+                Lihat Penguraian & Blok Konkret ➔
+              </button>
+            </div>
+
+            <!-- Hasil Eksplorasi -->
+            <div style="margin-top:24px;background:#ffffff;border:2.5px solid #bae6fd;border-radius:18px;padding:20px;">
+              <div style="font-family:var(--font-accent);font-size:2.8rem;color:#0284c7;font-weight:900;" id="exploreResultTitle">28</div>
+              <div style="display:flex;justify-content:center;gap:35px;margin:12px 0;font-size:1.2rem;">
+                <span style="font-weight:800;color:#0284c7;" id="exploreTensText">2 puluhan (20)</span>
+                <span style="font-weight:800;color:#eab308;" id="exploreUnitsText">8 satuan</span>
+              </div>
+              <div class="columns-side-by-side" style="margin-top:20px;gap:35px;">
+                <div class="block-column">
+                  <div class="tens-rod-group" id="customExploreRods"></div>
+                  <span class="block-col-label">Batang Puluhan</span>
+                </div>
+                <div class="block-column">
+                  <div class="units-cube-grid" id="customExploreCubes"></div>
+                  <span class="block-col-label">Kubus Satuan</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         5. SCREEN: VIDEO PEMBELAJARAN
+         ===================================================================== -->
+    <section class="screen" id="screen-video">
+      <div class="screen-top-bar">
+        <div class="screen-title-group">
+          <div class="screen-title-icon">🎬</div>
+          <div>
+            <h2>Video Pembelajaran Animasi</h2>
+            <p>“Ayo Belajar Penjumlahan Bersusun Panjang dengan Menyimpan!”</p>
+          </div>
+        </div>
+        <button class="btn btn-back-home" data-nav="screen-home" title="Kembali ke Beranda Utama"><span class="back-arrow-icon">⬅</span> <span class="back-btn-text">Kembali ke Beranda</span></button>
+      </div>
+
+      <div class="video-layout-grid">
+        <!-- Video Player Card (Video Pembelajaran Nyata) -->
+        <div class="video-player-container">
+          <div class="video-screen-canvas-wrap">
+            <video id="mainRealVideo" class="main-real-video" playsinline preload="metadata" controls poster="assets/images/beranda_bg.jpg">
+              <source src="assets/videos/video_pembelajaran.mp4" type="video/mp4">
+              <source src="video%20pembelajaran%20penjumlahan%20bersusun%20panjang%20dengan%20menyimpan%20.mp4" type="video/mp4">
+              Browser Anda tidak mendukung pemutar video HTML5.
+            </video>
+          </div>
+
+          <!-- Bar Kontrol Interaktif Tambahan -->
+          <div class="video-controls-bar">
+            <button class="video-ctrl-btn" id="videoPlayBtn" title="Putar / Jeda Video">▶️</button>
+            <button class="video-ctrl-btn" id="videoReplayBtn" title="Ulangi dari Awal">🔄</button>
+            <button class="video-ctrl-btn" id="videoRewind10Btn" title="Mundur 10 Detik" style="width:auto;padding:0 8px;border-radius:12px;font-size:0.8rem;font-weight:800;">⏪ 10s</button>
+            <button class="video-ctrl-btn" id="videoForward10Btn" title="Maju 10 Detik" style="width:auto;padding:0 8px;border-radius:12px;font-size:0.8rem;font-weight:800;">⏩ 10s</button>
+            <div class="video-timeline-wrap">
+              <input type="range" class="video-seek-slider" id="videoTimeSlider" min="0" max="100" step="0.1" value="0">
+              <span class="video-time-text" id="videoTimeDisplay">0:00 / 0:00</span>
+            </div>
+            <button class="video-ctrl-btn" id="videoSpeedBtn" title="Kecepatan Putar" style="width:auto;padding:0 10px;border-radius:12px;font-size:0.85rem;font-weight:800;">1.0x</button>
+            <button class="video-ctrl-btn" id="videoFullscreenBtn" title="Layar Penuh Video">⛶</button>
+          </div>
+        </div>
+
+        <!-- Video Sidebar Controls & Index -->
+        <div class="video-sidebar-card">
+          <h3 style="font-family:var(--font-display);color:#0369a1;font-size:1.3rem;">Daftar Babak Video:</h3>
+          <ul class="video-index-list" id="videoChapterList">
+            <li class="video-index-item current" data-pct="0">
+              <span class="step-num">1</span> <span>Pengantar & Konsep Penjumlahan</span>
+            </li>
+            <li class="video-index-item" data-pct="16">
+              <span class="step-num">2</span> <span>Mengenal Nilai Tempat Puluhan & Satuan</span>
+            </li>
+            <li class="video-index-item" data-pct="32">
+              <span class="step-num">3</span> <span>Menulis Bentuk Bersusun Panjang</span>
+            </li>
+            <li class="video-index-item" data-pct="48">
+              <span class="step-num">4</span> <span>Menjumlahkan Nilai Satuan</span>
+            </li>
+            <li class="video-index-item" data-pct="64">
+              <span class="step-num">5</span> <span>Proses Menukar & Menyimpan 1 Puluhan</span>
+            </li>
+            <li class="video-index-item" data-pct="80">
+              <span class="step-num">6</span> <span>Menjumlahkan Seluruh Puluhan</span>
+            </li>
+            <li class="video-index-item" data-pct="95">
+              <span class="step-num">7</span> <span>Kesimpulan & Hasil Akhir</span>
+            </li>
+          </ul>
+
+          <div style="display:flex;gap:10px;flex-direction:column;margin-top:auto;">
+            <button class="btn btn-outline" id="videoTranscriptBtn" style="font-size:0.95rem;padding:8px 14px;">
+              📄 Teks Ringkasan Materi Video
+            </button>
+            <button class="btn btn-accent" data-nav="screen-practice" style="font-size:1rem;padding:12px;">
+              Sudah Menonton, Ayo Berlatih! ➔
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Transcript Drawer (Hidden by default) -->
+      <div id="videoTranscriptDrawer" style="display:none;background:#ffffff;border:3px solid #bae6fd;border-radius:var(--radius-md);padding:20px;margin-top:20px;">
+        <h4 style="font-family:var(--font-display);color:#0369a1;margin-bottom:10px;">📜 Ringkasan Konsep Video Pembelajaran</h4>
+        <p style="line-height:1.7;color:#334155;font-weight:600;">
+          1. <strong>Penguraian Nilai Tempat:</strong> Bilangan dua angka diuraikan menjadi puluhan dan satuan terlebih dahulu.<br>
+          2. <strong>Penjumlahan Satuan:</strong> Satuan dijumlahkan lebih dulu. Jika hasil satuan berjumlah 10 atau lebih, maka terjadi proses <em>menyimpan</em>.<br>
+          3. <strong>Menyimpan 1 Puluhan:</strong> Setiap 10 satuan ditukar menjadi 1 puluhan simpanan dan diletakkan di atas kolom puluhan.<br>
+          4. <strong>Penjumlahan Puluhan:</strong> Jumlahkan semua puluhan termasuk 1 puluhan hasil simpanan.<br>
+          5. <strong>Hasil Akhir:</strong> Gabungkan puluhan dan satuan untuk mendapatkan jawaban yang tepat!
+        </p>
+      </div>
+
+      <!-- Kuis Singkat Setelah Video Selesai -->
+      <div id="videoPostQuizCard" style="display:none;background:#ffffff;border:4px solid #38bdf8;border-radius:var(--radius-lg);padding:24px;margin-top:20px;">
+        <h3 style="font-family:var(--font-display);color:#0369a1;font-size:1.4rem;margin-bottom:12px;">
+          ⭐ Kuis Pemahaman Setelah Menonton Video
+        </h3>
+        <div style="margin-bottom:14px;">
+          <p style="font-weight:700;">1. Pada penjumlahan bersusun dengan menyimpan, angka berapakah yang dijumlahkan pertama kali?</p>
+          <label style="display:block;margin:6px 0;cursor:pointer;"><input type="radio" name="vq1" value="satuan"> Angka Satuan</label>
+          <label style="display:block;margin:6px 0;cursor:pointer;"><input type="radio" name="vq1" value="puluhan"> Angka Puluhan</label>
+        </div>
+        <div style="margin-bottom:14px;">
+          <p style="font-weight:700;">2. Jika hasil penjumlahan satuan adalah 14, berapakah puluhan yang disimpan?</p>
+          <label style="display:block;margin:6px 0;cursor:pointer;"><input type="radio" name="vq1" value="1"> 1 puluhan (10)</label>
+          <label style="display:block;margin:6px 0;cursor:pointer;"><input type="radio" name="vq1" value="4"> 4 puluhan</label>
+        </div>
+        <button class="btn btn-primary" id="btnSubmitVideoQuiz">Kirim Jawaban Kuis</button>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         6. SCREEN: LATIHAN SOAL INTERAKTIF DENGAN INPUT ANGKA SENDIRI
+         ===================================================================== -->
+    <section class="screen" id="screen-practice">
+      <div class="screen-top-bar">
+        <div class="screen-title-group">
+          <div class="screen-title-icon">✏️</div>
+          <div>
+            <h2>Latihan Soal Interaktif</h2>
+            <p>Masukkan angka sendiri atau buat soal acak untuk berlatih!</p>
+          </div>
+        </div>
+        <button class="btn btn-back-home" data-nav="screen-home" title="Kembali ke Beranda Utama"><span class="back-arrow-icon">⬅</span> <span class="back-btn-text">Kembali ke Beranda</span></button>
+      </div>
+
+      <!-- Mode Selector -->
+      <div class="practice-modes-nav">
+        <button class="mode-nav-btn active" data-mode="1">Mode 1: Uraian Bilangan</button>
+        <button class="mode-nav-btn" data-mode="2">Mode 2: Langkah Penyimpanan</button>
+        <button class="mode-nav-btn" data-mode="3">Mode 3: Penjumlahan Bersusun</button>
+      </div>
+
+      <div class="practice-grid-layout">
+        <!-- Interactive Worksheet Center -->
+        <div class="practice-card-main">
+          <div id="practiceInteractiveArea"></div>
+
+          <!-- Bottom Action Buttons -->
+          <div class="practice-action-buttons">
+            <button class="btn btn-outline" id="btnHintPractice">💡 Petunjuk</button>
+            <button class="btn btn-success" id="btnCheckPractice">✓ Periksa Jawaban</button>
+            <button class="btn btn-outline" id="btnResetPractice">🔄 Ulangi Soal</button>
+          </div>
+
+          <!-- Banner Navigasi Selesai Pos 4 & Lanjut ke Pos 5 -->
+          <div class="mission-next-flow-card" id="mission4NextBar" style="margin-top:20px;">
+            <div class="mission-next-info">
+              <div class="mission-step-tag" id="mission4Tag">POS 4: LABORATORIUM SOLUSI</div>
+              <h4 class="mission-next-heading" id="mission4Heading">Kerjakan Minimal 1 Soal Latihan untuk Membuka Pos 5!</h4>
+              <p class="mission-next-subtext" id="mission4Subtext">Ketik jawabanmu dan klik "Periksa Jawaban", lalu lanjutkan penerbangan ke <strong>Pos 5: Misi Udara Pesawat</strong>! 🛩️</p>
+            </div>
+            <div class="mission-next-buttons">
+              <button class="btn btn-outline" data-nav="screen-map">
+                🗺️ Peta Misi
+              </button>
+              <button class="btn btn-hero-mulai btn-flow-next is-locked" id="btnNextMission4" data-complete-mission="4" data-next-screen="screen-game">
+                <span class="btn-flow-icon">🔒</span>
+                <span class="btn-flow-text">Kerjakan Soal ➔ Lanjut Pos 5</span>
+                <span class="btn-flow-arrow">❯</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Custom Problem Generator Sidebar -->
+        <div class="practice-card-side">
+          <h3 style="font-family:var(--font-display);color:#0369a1;font-size:1.3rem;">
+            ⚙️ Input Soal Sendiri
+          </h3>
+          <p style="font-size:0.9rem;color:#475569;">
+            Ketik dua bilangan (0 - 99) untuk menghitung secara dinamis:
+          </p>
+
+          <div class="custom-input-box">
+            <div class="custom-input-field-group">
+              <label for="inputNum1">Bilangan Pertama:</label>
+              <input type="number" id="inputNum1" value="57" min="0" max="99" class="num-input-large">
+            </div>
+            <div class="custom-input-field-group">
+              <label for="inputNum2">Bilangan Kedua:</label>
+              <input type="number" id="inputNum2" value="25" min="0" max="99" class="num-input-large">
+            </div>
+
+            <div style="display:flex;gap:10px;margin-top:12px;">
+              <button class="btn btn-primary" id="btnCreateCustomProblem" style="flex:1;">
+                Buat Soal ➔
+              </button>
+              <button class="btn btn-accent" id="btnRandomProblem" title="Buat Soal Acak">
+                🎲 Acak
+              </button>
+            </div>
+          </div>
+
+          <div class="quick-challenge-box">
+            <h4 style="font-family:var(--font-display);color:#0369a1;font-size:1.05rem;margin-bottom:6px;">
+              🌟 Tantangan Cepat:
+            </h4>
+            <ul style="font-size:0.85rem;color:#475569;line-height:1.6;list-style:inside disc;">
+              <li>Coba <strong>48 + 25</strong> (Hasil: 73)</li>
+              <li>Coba <strong>27 + 18</strong> (Hasil: 45)</li>
+              <li>Coba <strong>32 + 24</strong> (Tanpa simpan)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         7. SCREEN: GAME PESAWAT (MISI UDARA: TEMBAK JAWABAN BENAR!)
+         ===================================================================== -->
+    <section class="screen" id="screen-game">
+      <div class="screen-top-bar">
+        <div class="screen-title-group">
+          <div class="screen-title-icon">✈️</div>
+          <div>
+            <h2>Misi Pesawat Tempur: Tembak Jawaban Benar!</h2>
+            <p>Kendalikan pesawat tempur, bidik gerbang jawaban yang benar, dan luncurkan roket!</p>
+          </div>
+        </div>
+        <button class="btn btn-back-home" data-nav="screen-home" title="Kembali ke Beranda Utama"><span class="back-arrow-icon">⬅</span> <span class="back-btn-text">Kembali ke Beranda</span></button>
+      </div>
+
+      <div class="game-outer-card">
+        <!-- Game HUD Top Bar -->
+        <div class="game-hud-bar">
+          <div class="game-hud-item">
+            <span>🏆 Skor:</span>
+            <span id="gameScoreDisplay" style="color:#0284c7;">0</span>
+          </div>
+
+          <div class="game-hud-item">
+            <span>⭐ Bintang:</span>
+            <span id="gameStarsDisplay" style="color:#eab308;">0</span>
+          </div>
+
+          <div class="game-hud-item" id="gameLevelDisplay">
+            Level 1
+          </div>
+
+          <div class="game-hud-item">
+            <span>Kemajuan:</span>
+            <div class="game-progress-track">
+              <div class="game-progress-fill" id="gameProgressBar"></div>
+            </div>
+          </div>
+
+          <div class="game-hud-item">
+            <span>Kesempatan:</span>
+            <span id="gameLivesDisplay">❤️❤️❤️</span>
+          </div>
+
+          <div style="display:flex;align-items:center;gap:8px;">
+            <button class="icon-btn active btn-battle-bgm" id="btnBattleBgmToggle" title="Musik Perang Udara Aktif (Klik untuk Matikan)">⚔️ Musik Perang: ON</button>
+            <button class="icon-btn" id="btnGamePause" title="Jeda Permainan">⏸️</button>
+          </div>
+        </div>
+
+        <!-- Question Banner -->
+        <div class="game-question-banner">
+          <div class="game-question-prompt" id="gamePromptText">Hitung hasil penjumlahan berikut:</div>
+          <div class="game-question-math" id="gameMathText">57 + 25 = ?</div>
+        </div>
+
+        <!-- Interactive Canvas Viewport -->
+        <div class="game-canvas-wrapper">
+          <canvas id="gameCanvas" width="800" height="450"></canvas>
+
+          <!-- Modal Pause -->
+          <div class="game-overlay-modal" id="gamePauseModal">
+            <div class="game-modal-box">
+              <h3 style="font-family:var(--font-display);font-size:2rem;color:#0284c7;margin-bottom:12px;">⏸️ Permainan Dijeda</h3>
+              <p style="font-size:1.05rem;color:#475569;margin-bottom:20px;">Tarik napas sejenak, hitung dengan teliti, lalu lanjutkan penerbangan!</p>
+              <button class="btn btn-primary" onclick="window.gameEngine.togglePause()">▶️ Lanjutkan Terbang</button>
+            </div>
+          </div>
+
+          <!-- Modal Game Over -->
+          <div class="game-overlay-modal" id="gameOverModal">
+            <div class="game-modal-box">
+              <div class="game-over-banner">GAME OVER</div>
+              <p style="font-size:1.1rem;font-weight:700;color:#334155;" id="gameOverReason">
+                Pesawatmu melewati gerbang jawaban yang salah. Yuk, coba lagi!
+              </p>
+
+              <!-- Math Review Calculation -->
+              <div class="math-review-box" id="gameOverMathReview"></div>
+
+              <div style="display:flex;gap:12px;justify-content:center;margin-top:20px;">
+                <button class="btn btn-accent" id="btnGameOverRetry">🔄 Coba Lagi</button>
+                <button class="btn btn-outline" id="btnGameOverBack">📚 Kembali Belajar</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Modal Level Win -->
+          <div class="game-overlay-modal" id="gameLevelWinModal">
+            <div class="game-modal-box">
+              <div class="level-win-banner">🎉 POS 5 SUKSES! 🎉</div>
+              <h3 style="font-family:var(--font-display);color:#0284c7;font-size:1.6rem;margin-bottom:10px;" id="levelWinTitle">
+                Selamat! Misi Udara Berhasil Diselesaikan!
+              </h3>
+              <p style="font-size:1.05rem;color:#334155;font-weight:600;margin-bottom:16px;">
+                Pesawatmu terbang dengan sangat tangguh dan berhasil membuka seluruh gerbang! Kamu mendapat bonus +2 Bintang!
+              </p>
+              <div style="display:flex;flex-direction:column;gap:10px;">
+                <button class="btn btn-hero-mulai btn-flow-next glow-pulse" id="btnNextMission5" data-complete-mission="5" data-next-screen="screen-results" style="width:100%;">
+                  <span class="btn-flow-icon">🏆</span>
+                  <span class="btn-flow-text">Selesai Pos 5 ➔ Lanjut Pos 6 (Penghargaan)!</span>
+                  <span class="btn-flow-arrow">❯</span>
+                </button>
+                <div style="display:flex;gap:10px;justify-content:center;">
+                  <button class="btn btn-accent" id="btnLevelWinNext" style="flex:1;">Lanjut Level Pesawat ➔</button>
+                  <button class="btn btn-outline" data-nav="screen-map">🗺️ Peta Misi</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Controls Tray Bottom -->
+        <div class="game-controls-tray">
+          <div style="display:flex;align-items:center;gap:10px;">
+            <span style="font-weight:800;color:#0369a1;font-size:0.95rem;">Pilih Gerbang:</span>
+            <div class="game-gate-selectors">
+              <button class="gate-select-btn" data-idx="0">A (1)</button>
+              <button class="gate-select-btn active" data-idx="1">B (2)</button>
+              <button class="gate-select-btn" data-idx="2">C (3)</button>
+            </div>
+          </div>
+
+          <div style="display:flex;gap:12px;align-items:center;">
+            <span style="font-size:0.85rem;color:#64748b;font-weight:700;">Tekan [SPASI] atau klik:</span>
+            <button class="btn btn-danger" id="btnGameShoot" style="padding:10px 24px;font-size:1.15rem;">
+              🎯 TEMBAK!
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         8. SCREEN: MISI SOAL CERITA KEHIDUPAN SEHARI-HARI
+         ===================================================================== -->
+    <section class="screen" id="screen-story">
+      <div class="screen-top-bar">
+        <div class="screen-title-group">
+          <div class="screen-title-icon">📖</div>
+          <div>
+            <h2>Misi Soal Cerita Kehidupan Sehari-hari</h2>
+            <p>Selesaikan masalah nyata menggunakan konsep nilai tempat dan menyimpan!</p>
+          </div>
+        </div>
+        <button class="btn btn-back-home" data-nav="screen-home" title="Kembali ke Beranda Utama"><span class="back-arrow-icon">⬅</span> <span class="back-btn-text">Kembali ke Beranda</span></button>
+      </div>
+
+      <div class="story-wrapper">
+        <div class="story-header-nav">
+          <span style="font-family:var(--font-display);font-size:1.4rem;color:#0284c7;" id="storyMissionTitle">
+            Misi 1: Buku Cerita Perpustakaan
+          </span>
+          <div style="display:flex;gap:10px;align-items:center;">
+            <span style="font-weight:700;color:#64748b;font-size:0.9rem;" id="storyIndexIndicator">Misi 1 dari 4</span>
+            <button class="btn btn-outline" id="btnStoryPrev" style="padding:6px 12px;font-size:0.9rem;">❮</button>
+            <button class="btn btn-outline" id="btnStoryNext" style="padding:6px 12px;font-size:0.9rem;">❯</button>
+          </div>
+        </div>
+
+        <div class="story-content-grid">
+          <!-- Illustration Left -->
+          <div class="story-illustration-wrap">
+            <img src="assets/images/story_library.jpg" alt="Ilustrasi Soal Cerita" class="story-img" id="storyImage">
+            <div class="story-text-card" id="storyProblemText">
+              Di perpustakaan ada 28 buku cerita. Guru menambahkan 17 buku baru. Berapa jumlah seluruh buku di perpustakaan sekarang?
+            </div>
+          </div>
+
+          <!-- Step Guides Right -->
+          <div class="story-steps-guide">
+            <div class="story-step-item">
+              <div class="step-badge">1</div>
+              <div class="step-text-wrap">
+                <div class="step-title">Tuliskan Informasi yang Diketahui</div>
+                <div class="step-detail" id="storyStep1Text">Ada 28 buku lama dan 17 buku baru.</div>
+              </div>
+            </div>
+
+            <div class="story-step-item">
+              <div class="step-badge">2</div>
+              <div class="step-text-wrap">
+                <div class="step-title">Tentukan Operasi Hitung</div>
+                <div class="step-detail" id="storyStep2Text">Operasi penjumlahan: 28 + 17</div>
+              </div>
+            </div>
+
+            <div class="story-step-item">
+              <div class="step-badge">3</div>
+              <div class="step-text-wrap">
+                <div class="step-title">Uraikan Puluhan dan Satuan</div>
+                <div class="step-detail" id="storyStep3Text">28 = 20 + 8 | 17 = 10 + 7</div>
+              </div>
+            </div>
+
+            <div class="story-step-item">
+              <div class="step-badge">4</div>
+              <div class="step-text-wrap">
+                <div class="step-title">Lakukan Penjumlahan Bersusun & Simpan</div>
+                <div class="step-detail" id="storyStep4Text">8 + 7 = 15 (simpan 1 puluhan). 20 + 10 + 10 = 40.</div>
+              </div>
+            </div>
+
+            <div class="story-step-item">
+              <div class="step-badge">5</div>
+              <div class="step-text-wrap">
+                <div class="step-title">Tuliskan Jawaban dalam Kalimat</div>
+                <div class="step-detail" id="storyStep5Text">Jadi, jumlah seluruh buku di perpustakaan adalah 45 buku.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Answer Input Box Tray -->
+        <div class="story-answer-tray">
+          <label for="storyAnswerInput" style="font-family:var(--font-display);font-size:1.15rem;color:#0369a1;">
+            Jawabanmu:
+          </label>
+          <input type="number" id="storyAnswerInput" placeholder="Ketik angka hasil..." class="interactive-ws-input" style="width:160px;font-size:1.4rem;">
+          <button class="btn btn-success" id="btnStoryCheck">✓ Periksa Jawaban</button>
+          <button class="btn btn-outline" id="btnStoryHint">💡 Butuh Petunjuk?</button>
+        </div>
+        <div id="storyFeedbackBox"></div>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         9. SCREEN: HASIL DAN REFLEKSI (HASIL BELAJAR)
+         ===================================================================== -->
+    <section class="screen" id="screen-results">
+      <div class="screen-top-bar">
+        <div class="screen-title-group">
+          <div class="screen-title-icon">🏆</div>
+          <div>
+            <h2>Hasil Belajar & Refleksi</h2>
+            <p>Laporan pencapaian petualangan dan evaluasi penguasaan materi.</p>
+          </div>
+        </div>
+        <button class="btn btn-back-home" data-nav="screen-home" title="Kembali ke Beranda Utama"><span class="back-arrow-icon">⬅</span> <span class="back-btn-text">Kembali ke Beranda</span></button>
+      </div>
+
+      <div class="results-card">
+        <div class="results-hero-header">
+          <h2 class="results-cheer-title" id="resFeedbackTitle">Hebat! Kamu Menyelesaikan Misi!</h2>
+          <div class="results-pilot-avatar-wrap">
+            <img src="assets/images/mascot_plane.jpg" alt="Avatar Pilot" class="results-pilot-mini">
+            <div>
+              <div style="font-family:var(--font-display);font-size:1.4rem;color:#0f172a;" id="resPlayerName">Pilot Bintang</div>
+              <button class="btn btn-outline" id="btnEditPlayerName" style="padding:4px 10px;font-size:0.8rem;margin-top:4px;">
+                ✏️ Ganti Nama
+              </button>
+            </div>
+          </div>
+          <p style="font-size:1.1rem;font-weight:700;color:#334155;max-width:650px;margin:0 auto;" id="resFeedbackMessage">
+            Teruslah belajar dan berlatih, karena kamu pasti bisa menjadi pilot matematika yang hebat!
+          </p>
+        </div>
+
+        <!-- Banner Misi 6: Puncak Capaian 6 Misi Selesai -->
+        <div class="mission-grand-graduation-card" id="missionGraduationCard">
+          <div class="grad-badge-pill">🎓 PENGHARGAAN TERTINGGI 🏆</div>
+          <h3 class="grad-title">SELAMAT! SELURUH 6 MISI PETUALANGAN SELESAI 100%!</h3>
+          <p class="grad-desc">
+            Kamu telah membuktikan kemampuan hebatmu dari <strong>Misi 1 (Berkas Kasus)</strong> sampai <strong>Misi 6 (Halaman Penghargaan)</strong>! Kini kamu berhak menyandang gelar <strong>Kapten Dirgantara Matematika</strong>!
+          </p>
+          <div class="grad-actions">
+            <button class="btn btn-hero-mulai" data-nav="screen-map">
+              🗺️ Lihat Peta Petualangan Lengkap (6 Misi)
+            </button>
+            <button class="btn btn-accent" data-nav="screen-game">
+              ✈️ Main Game Pesawat Tempur Lagi
+            </button>
+          </div>
+        </div>
+
+        <div class="results-stat-grid">
+          <!-- Summary Stats Left -->
+          <div class="score-summary-box">
+            <h3 style="font-family:var(--font-display);color:#0369a1;font-size:1.25rem;margin-bottom:12px;">
+              📊 Statistik Capaian
+            </h3>
+            <div class="stat-row-item">
+              <span>Total Soal Dikerjakan</span>
+              <span class="stat-row-value" id="resTotalQuestions">0</span>
+            </div>
+            <div class="stat-row-item">
+              <span>Jawaban Benar</span>
+              <span class="stat-row-value" style="color:#16a34a;" id="resCorrectCount">0</span>
+            </div>
+            <div class="stat-row-item">
+              <span>Perlu Diperbaiki</span>
+              <span class="stat-row-value" style="color:#dc2626;" id="resWrongCount">0</span>
+            </div>
+            <div class="stat-row-item">
+              <span>Tingkat Ketepatan</span>
+              <span class="stat-row-value" style="color:#0284c7;" id="resAccuracyPercent">100%</span>
+            </div>
+            <div class="stat-row-item">
+              <span>Skor Game Pesawat</span>
+              <span class="stat-row-value" id="resGameScore">0</span>
+            </div>
+            <div class="stat-row-item">
+              <span>Level Tertinggi</span>
+              <span class="stat-row-value" id="resMaxLevel">1</span>
+            </div>
+            <div class="stat-row-item">
+              <span>Bintang Dikumpulkan</span>
+              <span class="stat-row-value" style="color:#eab308;" id="resStarsCount">0 ⭐</span>
+            </div>
+          </div>
+
+          <!-- Mastery Checklist Right -->
+          <div class="mastery-checklist-box">
+            <h3 style="font-family:var(--font-display);color:#0369a1;font-size:1.25rem;margin-bottom:12px;">
+              🎯 Status Penguasaan Materi
+            </h3>
+
+            <div class="mastery-item">
+              <div class="mastery-check-icon passed" id="badgePlaceValue">✓</div>
+              <div>
+                <div class="mastery-text-title">Nilai Tempat Puluhan & Satuan</div>
+                <div class="mastery-text-desc">Mampu mengelompokkan 10 satuan menjadi 1 puluhan.</div>
+              </div>
+            </div>
+
+            <div class="mastery-item">
+              <div class="mastery-check-icon review" id="badgeCarry">!</div>
+              <div>
+                <div class="mastery-text-title">Penjumlahan Bersusun dengan Menyimpan</div>
+                <div class="mastery-text-desc">Terampil menyimpan 1 puluhan pada kolom puluhan.</div>
+              </div>
+            </div>
+
+            <div class="mastery-item">
+              <div class="mastery-check-icon review" id="badgeStory">!</div>
+              <div>
+                <div class="mastery-text-title">Soal Cerita Kehidupan Sehari-hari</div>
+                <div class="mastery-text-desc">Mampu menyelesaikan soal cerita dengan 5 langkah terpadu.</div>
+              </div>
+            </div>
+
+            <div style="margin-top:20px;padding-top:14px;border-top:1px dashed #e2e8f0;">
+              <button class="btn btn-outline" id="btnResetProgress" style="font-size:0.85rem;padding:8px 14px;color:#dc2626;border-color:#fca5a5;">
+                🔄 Ulangi Petualangan dari Awal
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div style="display:flex;gap:14px;justify-content:center;margin-top:20px;flex-wrap:wrap;">
+          <button class="btn btn-primary" data-nav="screen-material">📚 Belajar Kembali</button>
+          <button class="btn btn-success" data-nav="screen-practice">✏️ Latihan Lagi</button>
+          <button class="btn btn-accent" data-nav="screen-game">🛩️ Mainkan Pesawat</button>
+          <button class="btn btn-back-home" data-nav="screen-home"><span class="back-arrow-icon">🏠</span> Kembali ke Beranda</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         10. SCREEN: PETUNJUK BERMAIN & PENGATURAN KONTROL
+         ===================================================================== -->
+    <section class="screen" id="screen-guide">
+      <div class="screen-top-bar">
+        <div class="screen-title-group">
+          <div class="screen-title-icon">❓</div>
+          <div>
+            <h2>Petunjuk Bermain & Kontrol</h2>
+            <p>Panduan cara mengendalikan pesawat dan menyelesaikan misi matematika.</p>
+          </div>
+        </div>
+        <button class="btn btn-back-home" data-nav="screen-home" title="Kembali ke Beranda Utama"><span class="back-arrow-icon">⬅</span> <span class="back-btn-text">Kembali ke Beranda</span></button>
+      </div>
+
+      <div class="guide-grid">
+        <div class="guide-box">
+          <h3>🎮 Kontrol Game Pesawat</h3>
+          <ul class="guide-list">
+            <li>
+              <span>🎯 <strong>Memilih Gerbang:</strong> Klik langsung gerbang di layar, atau tekan tombol <span class="guide-key-badge">1</span> untuk A, <span class="guide-key-badge">2</span> untuk B, dan <span class="guide-key-badge">3</span> untuk C.</span>
+            </li>
+            <li>
+              <span>🚀 <strong>Menembak:</strong> Tekan tombol <span class="guide-key-badge">SPASI</span> pada keyboard atau klik tombol merah <strong>TEMBAK!</strong> di layar.</span>
+            </li>
+            <li>
+              <span>✈️ <strong>Menggerakkan Pesawat:</strong> Tekan panah <span class="guide-key-badge">▲</span> / <span class="guide-key-badge">▼</span> atau tombol <span class="guide-key-badge">W</span> / <span class="guide-key-badge">S</span> untuk mengatur ketinggian terbang.</span>
+            </li>
+            <li>
+              <span>📱 <strong>Layar Ponsel/Tablet:</strong> Sentuh gerbang jawaban secara langsung untuk membidik dan menembak!</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="guide-box">
+          <h3>💡 Aturan Misi & Kemenangan</h3>
+          <ul class="guide-list">
+            <li>
+              <span>⭐ Setiap jawaban benar menghasilkan <strong>+100 Skor</strong> dan membuka gerbang.</span>
+            </li>
+            <li>
+              <span>🔥 Menjawab benar berturut-turut memberi bonus <strong>Bintang Emas</strong>!</span>
+            </li>
+            <li>
+              <span>🎯 <strong>Bidik & Tembak:</strong> Pilih gerbang jawaban yang benar (A, B, atau C), lalu tekan <strong>SPASI</strong> atau tombol <strong>LUNCURKAN ROKET</strong>!</span>
+            </li>
+            <li>
+              <span>⚠️ Hati-hati! Jika menembak gerbang yang salah atau membiarkan gerbang lewat, kamu kehilangan 1 hati (kesempatan).</span>
+            </li>
+            <li>
+              <span>🛬 Jika kesempatan habis, pesawat akan mendarat dengan aman dan menampilkan pembahasan langkah penjumlahan yang benar!</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div style="margin-top:24px;text-align:center;">
+        <button class="btn btn-primary" data-nav="screen-game">Siap Terbang! Buka Game Pesawat ➔</button>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- =======================================================================
+       MODAL PENGATURAN (SETTINGS MODAL)
+       ======================================================================= -->
+  <div class="app-modal-backdrop" id="settingsModal">
+    <div class="modal-dialog-box">
+      <div class="modal-header">
+        <h3>⚙️ Pengaturan Aplikasi</h3>
+        <button class="icon-btn" id="closeSettingsBtn" style="border:none;">✖</button>
+      </div>
+
+      <div class="setting-row">
+        <span class="setting-label">Volume Efek Suara:</span>
+        <input type="range" id="settingVolumeSlider" min="0" max="1" step="0.05" value="0.8" style="accent-color:#0284c7;">
+      </div>
+
+      <div class="setting-row">
+        <span class="setting-label">Narasi Suara (Bahasa Indonesia):</span>
+        <label style="position:relative;display:inline-block;width:48px;height:26px;">
+          <input type="checkbox" id="settingNarrationSwitch" checked style="width:100%;height:100%;cursor:pointer;">
+        </label>
+      </div>
+
+      <div class="setting-row">
+        <span class="setting-label">Backsound Perang Pesawat (BGM):</span>
+        <label style="position:relative;display:inline-block;width:48px;height:26px;">
+          <input type="checkbox" id="settingBattleBgmSwitch" checked style="width:100%;height:100%;cursor:pointer;">
+        </label>
+      </div>
+
+      <div style="margin-top:20px;text-align:center;">
+        <p style="font-size:0.85rem;color:#64748b;margin-bottom:12px;">Aplikasi ini tidak memerlukan login atau internet eksternal!</p>
+        <button class="btn btn-primary" onclick="document.getElementById('settingsModal').classList.remove('active')">
+          Simpan & Tutup
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Global Toast Notification Element -->
+  <div class="toast-notification" id="appToast">
+    <span>✨</span> <span>Selamat datang di Pesawat Angka!</span>
+  </div>
+
+  <!-- JavaScript Modules -->
+  <script src="js/audio.js"></script>
+  <script src="js/state.js"></script>
+  <script src="js/material.js"></script>
+  <script src="js/video.js"></script>
+  <script src="js/practice.js"></script>
+  <script src="js/game.js"></script>
+  <script src="js/story.js"></script>
+  <script src="js/results.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

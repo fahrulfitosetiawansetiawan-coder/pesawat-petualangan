@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+<defs>
+ <linearGradient id="sky" x2="0" y2="1"><stop stop-color="#20a9f4"/><stop offset="0.65" stop-color="#70d4fb"/><stop offset="1" stop-color="#c9f2ff"/></linearGradient>
+ <linearGradient id="plane" x2="1" y2="1"><stop stop-color="#61d5ff"/><stop offset="1" stop-color="#0871cf"/></linearGradient>
+ <linearGradient id="cloud" x2="0" y2="1"><stop stop-color="#fff"/><stop offset="1" stop-color="#d9f2ff"/></linearGradient>
+</defs>
+<rect width="1600" height="900" fill="url(#sky)"/>
+<!-- sun -->
+<g transform="translate(1450 115)" stroke="#ffe45c" stroke-width="15" stroke-linecap="round"><path d="M0 -95V-72 M70 -70L54 -54 M100 0H75 M70 70L54 54 M0 96V72 M-70 70L-54 54 M-100 0H-75 M-70 -70L-54 -54"/></g>
+<circle cx="1450" cy="115" r="65" fill="#ffe66b"/><circle cx="1428" cy="92" r="19" fill="#fff9c7"/>
+<!-- wispy clouds -->
+<g fill="#effbff" opacity=".8">
+<path d="M980 145q35-45 68-10q31-54 68-10q39-23 67 17q34-5 53 18H980z"/>
+<path d="M1190 315q32-39 61-10q29-42 63-10q34-25 60 12q31-8 53 15H1190z"/>
+<path d="M285 390q28-35 55-8q30-42 61-7q30-22 53 12q29-4 45 15H285z"/>
+</g>
+<!-- flight trails -->
+<g fill="none" stroke="#d9f7ff" stroke-width="11" stroke-linecap="round"><path d="M0 245Q105 257 190 214"/><path d="M0 290Q100 300 180 258"/><path d="M30 333Q120 328 214 295"/></g>
+<!-- cartoon airplane -->
+<g transform="translate(105 95) rotate(-9)">
+ <path d="M73 94L25 40Q16 29 31 27L78 44L112 80Z" fill="#0756a8" stroke="#06417e" stroke-width="5"/>
+ <path d="M39 38l29 12-12 14z" fill="#ffda4d"/>
+ <path d="M124 139L45 181Q30 190 48 199L160 177Z" fill="#1688df" stroke="#0755a5" stroke-width="5"/>
+ <path d="M48 126Q74 75 151 65L274 77Q307 82 315 101Q322 117 298 128L164 164Q93 180 48 149Q36 140 48 126Z" fill="url(#plane)" stroke="#0755a5" stroke-width="6"/>
+ <path d="M54 137Q107 164 165 143L289 112Q283 139 240 150L161 171Q99 182 54 151Z" fill="#f8fdff"/>
+ <path d="M135 132L194 186Q205 198 218 188L246 146L195 119Z" fill="#31b6f3" stroke="#0755a5" stroke-width="5"/>
+ <g fill="#e3faff" stroke="#1267b4" stroke-width="3"><rect x="120" y="91" width="16" height="23" rx="6"/><rect x="145" y="86" width="16" height="23" rx="6"/><rect x="170" y="82" width="16" height="23" rx="6"/></g>
+ <ellipse cx="230" cy="94" rx="17" ry="23" fill="#fff"/><ellipse cx="230" cy="98" rx="9" ry="14" fill="#092d59"/><circle cx="233" cy="91" r="4" fill="#fff"/>
+ <ellipse cx="264" cy="91" rx="16" ry="21" fill="#fff"/><ellipse cx="265" cy="95" rx="8" ry="13" fill="#092d59"/><circle cx="268" cy="88" r="4" fill="#fff"/>
+ <ellipse cx="214" cy="119" rx="13" ry="7" fill="#ff8ba5"/><ellipse cx="281" cy="115" rx="12" ry="7" fill="#ff8ba5"/>
+ <path d="M232 119Q250 139 269 117Q265 143 247 142Q235 139 232 119Z" fill="#a91f39" stroke="#063b76" stroke-width="3"/>
+ <path d="M237 121Q250 130 264 121" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round"/>
+ <g transform="translate(315 101)"><circle r="8" fill="#ffd54a" stroke="#a86b12" stroke-width="3"/><path d="M0-8Q-18-32-6-43Q8-47 7-11Z" fill="#ffe45c" stroke="#bd861b" stroke-width="3"/><path d="M6 7Q30-8 39 6Q42 20 10 17Z" fill="#ffe45c" stroke="#bd861b" stroke-width="3"/></g>
+ <path d="M78 125l13-11 13 11-5 17H83z" fill="#ffdb4e" stroke="#fff5b3" stroke-width="2"/>
+</g>
+<!-- birds -->
+<g fill="none" stroke="#fff" stroke-width="7" stroke-linecap="round"><path d="M570 95q20-23 40 0q20-23 40 0"/><path d="M1218 235q17-17 34 0q17-17 34 0"/><path d="M530 300q16-16 32 0q16-16 32 0"/></g>
+<!-- hot air balloon -->
+<g transform="translate(1510 355)"><path d="M-39-50Q-42-103 0-110Q42-103 39-50Q30-20 0 0Q-30-20-39-50Z" fill="#ffcf47" stroke="#e89a2b" stroke-width="4"/><path d="M0-109Q19-104 21-64Q19-25 0 0Q-19-25-21-64Q-19-104 0-109Z" fill="#2ea8f5"/><path d="M-39-50Q-22-58-21-64Q-19-25 0 0Q-30-20-39-50Z" fill="#ff6d69"/><path d="M-12 2l3 12h18l3-12" fill="#bd6b31" stroke="#8a4b27" stroke-width="3"/></g>
+<!-- islands -->
+<path d="M0 685q75-80 150-34q61-48 130 19q60-28 120 21H0z" fill="#75d16a"/>
+<path d="M0 707q83-50 148-18q64-45 132 15H0z" fill="#39b87a"/>
+<path d="M1230 700q70-73 144-33q71-65 141-4q59-18 85 10v84h-370z" fill="#72d66e"/>
+<path d="M1272 714q71-40 132-12q70-51 139-1l57-11v77h-328z" fill="#3ebc7c"/>
+<!-- bottom clouds -->
+<path d="M0 770Q15 700 85 722Q118 662 181 716Q236 675 282 731Q340 684 390 740Q448 687 502 744Q566 690 620 752Q683 697 744 758Q802 700 865 755Q923 697 984 752Q1045 690 1106 746Q1168 690 1230 744Q1292 684 1350 738Q1410 680 1468 727Q1540 675 1600 729V900H0Z" fill="url(#cloud)" stroke="#b7e8ff" stroke-width="5"/>
+<g fill="#fff" opacity=".7"><circle cx="78" cy="758" r="56"/><circle cx="198" cy="784" r="53"/><circle cx="319" cy="791" r="62"/><circle cx="453" cy="796" r="51"/><circle cx="573" cy="794" r="62"/><circle cx="692" cy="806" r="56"/><circle cx="811" cy="800" r="57"/><circle cx="931" cy="797" r="52"/><circle cx="1053" cy="786" r="63"/><circle cx="1183" cy="786" r="57"/><circle cx="1306" cy="781" r="61"/><circle cx="1430" cy="777" r="59"/><circle cx="1545" cy="756" r="60"/></g>
+</svg>
